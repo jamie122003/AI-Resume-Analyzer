@@ -1,0 +1,6 @@
+Flask
+PyPDF2
+Werkzeug
+sentence-transformers
+python-docx
+streamlit

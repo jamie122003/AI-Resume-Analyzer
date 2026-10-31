@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AI Resume Analyzer</title>
+    </head>
+    <body>
+
+        <div class="container">
+
+        <h1>AI Resume Analyzer</h1>
+        <h3>Upload Your Resume</h3>
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="resume" 
+            accept=".pdf,.docx" required>
+
+            <br><br>
+
+            <label for="job_description">Job Description:</label>
+            <br>
+            <textarea name="job_description" 
+            rows="10" 
+            cols="60"
+            placeholder="Paste the job description here..."
+        
+            required></textarea>
+
+        <br><br>    
+
+        <button type="submit">Analyze Resume</button>
+
+        </form>
+
+        {% if name %}
+            <h3>Name: {{ name }}</h3>
+        {% endif %}
+        
+        {% if email %}
+            <h3>Email: {{ email[0] }}</h3>
+        {% endif %}
+        
+        {% if phone %}
+            <h3>Phone: {{ phone[0] }}</h3>
+        {% endif %}
+
+        {% if text %}
+            <h3>Extracted Resume Text</h3>
+            <p>{{ text }}</p>
+        {% endif %}
+        
+        <h3>Skills</h3>
+
+        {% if skills %}
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No skills found.</p>
+{% endif %}
+
+        <h3>Education</h3>
+
+        {% if education %}
+        <ul>
+            {% for edu in education %}
+                <li>{{ edu }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No education details found.</p>
+{% endif %}
+
+        <h3>Experience</h3>
+
+        {% if experience %}
+        <ul>
+            {% for item in experience %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No experience details found.</p>
+{% endif %}    
+       <h3>Job Description</h3>
+
+        {% if job_description %}
+            <p>{{ job_description }}</p>
+        {% else %}
+            <p>No job description provided.</p>
+{% endif %}
+        <h3>Matched Skills</h3>
+
+        {% if matched_skills %}
+        <ul>
+            {% for skill in matched_skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matched skills found.</p>
+{% endif %}
+        <h3>Missing Skills</h3>
+
+        {% if missing_skills %}
+        <ul>
+            {% for skill in missing_skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>  
+{% else %}
+        <p>No missing skills found.</p>
+{% endif %}       
+        <h3>ATS Score</h3>
+        <p>{{ ats_score}}%</p> 
+
+        <h3>AI Match Score</h3>
+        <p>{{ ai_match_score }}%</p>
+
+        <h3>Resume Suggestions</h3>
+
+        {% if suggestions %}
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li>{{suggestion }}</li>
+                {% endfor %}
+            </ul>
+{% else %}
+    <p>No suggestions avaiable.</p>
+{% endif %}                       
+
+
+        </div>
+    </body>
+</html>
