@@ -4,3 +4,4 @@ Werkzeug
 sentence-transformers
 python-docx
 streamlit
+gunicorn
